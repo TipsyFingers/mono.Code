@@ -15,7 +15,7 @@
 
             return instance;
         }
-        //...
+
         public static int getId()
         {
             return getInstance()._id++;
