@@ -87,7 +87,7 @@ namespace mono.App
             StudentContainer.Students.Add(new Student(StudentIdGenerator.GetID(), _fname, _lname, _gpa));            // ukoliko su sve provjere prosle ucenik se sprema u container
         }
 
-        public static void Display()                            
+        public static void Display()
         {
             List<Student> SortedList = StudentContainer.Students.OrderBy(o => o.LName).ToList();                    //sortiranje liste prije ispisa
 
@@ -97,7 +97,6 @@ namespace mono.App
                 Console.Write(item.Id);
                 Console.WriteLine(". \t|\t {0} \t|\t {1} \t|\t {2} \t|", item.FName, item.LName, item.GPA);
             }
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------");
         }
     }
