@@ -84,7 +84,7 @@ namespace mono.App
 
             }
 
-            StudentContainer.Students.Add(new Student(StudentIdGenerator.GetID(), _fname, _lname, _gpa));            // ukoliko su sve provjere prosle ucenik se sprema u container
+            StudentContainer.Students.Add(new Student(StudentIdGenerator.getId(), _fname, _lname, _gpa));            // ukoliko su sve provjere prosle ucenik se sprema u container
         }
 
         public static void Display()

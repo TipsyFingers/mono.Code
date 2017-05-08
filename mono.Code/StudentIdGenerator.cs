@@ -1,11 +1,24 @@
 ﻿namespace mono.Code
 {
-    public class StudentIdGenerator                                         // najjednostavniji oblik generiranja ID-a
+    public sealed class StudentIdGenerator
     {
-        public static int GetID()
+        private static StudentIdGenerator instance;
+
+        private int _id = 0;
+
+        private StudentIdGenerator() { }
+
+        public static StudentIdGenerator getInstance()
         {
-            int id = StudentContainer.Students.Count;
-            return id;
+            if (instance == null)
+                instance = new StudentIdGenerator();
+
+            return instance;
+        }
+        //...
+        public static int getId()
+        {
+            return getInstance()._id++;
         }
     }
 }
