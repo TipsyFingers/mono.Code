@@ -55,7 +55,6 @@ namespace mono.App
                     Console.WriteLine("Invalid input, try again. Only text accepted");
             }
 
-
             while (true)
             {
                 Console.WriteLine("Enter student second name: ");                           // provjera stringa
