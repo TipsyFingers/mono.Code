@@ -22,9 +22,6 @@ namespace mono.App
                 Console.Write("Please specify desired operation: ");
                 _input = Console.ReadLine().ToLower();
 
-
-
-
                 if (_input == Code.Operations.op1)                              // Provjare koja je operacija odabrana te pokretanje iste
                 {
                     Enlist();                    
