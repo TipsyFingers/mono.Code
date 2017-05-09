@@ -3,6 +3,7 @@
     public class Student : Person
     {
         public decimal GPA { get; set; }
+        public int _id { get; internal set; }
 
         public Student(int id, string fname, string lname, decimal gpa)
         {

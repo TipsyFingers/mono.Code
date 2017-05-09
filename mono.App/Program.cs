@@ -24,12 +24,16 @@ namespace mono.App
 
                 if (_input == Code.Operations.op1)                              // Provjare koja je operacija odabrana te pokretanje iste
                 {
-                    Enlist();                    
+                    Enlist();
                 }
                 else if (_input == Code.Operations.op2)
                 {
                     Display();
                     break;
+                }
+                else if (_input == Code.Operations.op3)
+                {
+                    Update();
                 }
                 else
                 {
@@ -73,7 +77,7 @@ namespace mono.App
                 if (Decimal.TryParse(_temp, out _gpa))                                  //prvo se provjerava je li uneseni string brojčana vrijednost
                 {
                     _gpa = Math.Round(Convert.ToDecimal(_temp), 2);
-                    if(ValidationClass.validateValueRng(_gpa))                          //provjera nalazi li se broj u intervalu [1,5]   
+                    if (ValidationClass.validateValueRng(_gpa))                          //provjera nalazi li se broj u intervalu [1,5]   
                         break;
                     else
                         Console.WriteLine("Invalid value, try again");
@@ -98,6 +102,68 @@ namespace mono.App
                 Console.WriteLine(". \t|\t {0} \t|\t {1} \t|\t {2} \t|", item.FName, item.LName, item.GPA);
             }
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------");
+        }
+
+        public static void Update()
+        {
+            string _input;
+            int _id;
+
+            Console.WriteLine("Update student. Enter student ID: ");
+
+            _input = Console.ReadLine();
+            _id = Convert.ToInt32(_input);
+
+            if (StudentContainer.Students.Any(o => o.Id == _id))
+            {
+                string _fname, _lname;
+                decimal _gpa;
+
+                Console.WriteLine("Student ID " + _id + " found");
+
+                while (true)
+                {
+                    Console.WriteLine("Enter student first name: ");
+                    _fname = Console.ReadLine();
+
+                    if (ValidationClass.validateString(_fname))                                 // provjera stringa
+                        break;
+                    else
+                        Console.WriteLine("Invalid input, try again. Only text accepted");
+                }
+
+                while (true)
+                {
+                    Console.WriteLine("Enter student second name: ");                           // provjera stringa
+                    _lname = Console.ReadLine();
+
+                    if (ValidationClass.validateString(_lname))
+                        break;
+                    else
+                        Console.WriteLine("Invalid input, try again. Only text accepted");
+                }
+
+                while (true)
+                {
+                    Console.WriteLine("Enter student GPA (use comma for decimal): ");
+                    _input = Console.ReadLine();
+                    if (Decimal.TryParse(_input, out _gpa))                                  //prvo se provjerava je li uneseni string brojčana vrijednost
+                    {
+                        _gpa = Math.Round(Convert.ToDecimal(_input), 2);
+                        if (ValidationClass.validateValueRng(_gpa))                          //provjera nalazi li se broj u intervalu [1,5]   
+                            break;
+                        else
+                            Console.WriteLine("Invalid value, try again");
+                    }
+
+                    else
+                        Console.WriteLine("Invalid input, try again. Please ");
+                }
+
+                StudentContainer.updateStudent(_id, _fname, _lname, _gpa);                      // Update određenog studenta
+            }
+            else
+                Console.WriteLine("Student ID " + _id + " not found");
         }
     }
 }
