@@ -88,12 +88,12 @@ namespace mono.App
 
             }
 
-            StudentContainer.Students.Add(new Student(StudentIdGenerator.getId(), _fname, _lname, _gpa));            // ukoliko su sve provjere prosle ucenik se sprema u container
+            StudentContainer.addStudent(StudentIdGenerator.getId(), _fname, _lname, _gpa);            // ukoliko su sve provjere prosle ucenik se sprema u container
         }
 
         public static void Display()
         {
-            List<Student> SortedList = StudentContainer.Students.OrderBy(o => o.LName).ToList();                    //sortiranje liste prije ispisa
+            List<Student> SortedList = StudentContainer.sortList().ToList();                    //sortiranje liste prije ispisa
 
             foreach (Student item in SortedList)
             {
@@ -114,7 +114,7 @@ namespace mono.App
             _input = Console.ReadLine();
             _id = Convert.ToInt32(_input);
 
-            if (StudentContainer.Students.Any(o => o.Id == _id))
+            if (StudentContainer.containsStudId(_id))
             {
                 string _fname, _lname;
                 decimal _gpa;
